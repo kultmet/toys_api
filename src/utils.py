@@ -1,13 +1,13 @@
-from abc import ABC, abstractmethod
 import typing
+from abc import ABC, abstractmethod
 
 from sqlalchemy import Column, Insert, delete, func, insert, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
 def get_toy_data_from_exel():
-    import pandas
     import numpy as np
+    import pandas
 
     df = pandas.read_excel("files/detskiymir_msk_products.xlsx").replace(np.nan, None)
     return df.to_dict(orient="records")
@@ -85,7 +85,8 @@ class SQLAlchemyRepository(Repository):
     def _check_type(self, criteries):
         if not isinstance(criteries, (Criteries, type(None))):
             raise TypeError(
-                f"Required type 'Criteries' For 'criteries' argument, not '{type(criteries)}'"
+                "Required type 'Criteries' For "
+                f"'criteries' argument, not '{type(criteries)}'"
             )
         return criteries
 

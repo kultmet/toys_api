@@ -1,18 +1,7 @@
-import typing
 from datetime import datetime
 
-from sqlalchemy import (
-    BOOLEAN,
-    CHAR,
-    TIMESTAMP,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-    UniqueConstraint,
-)
-from sqlalchemy.ext.associationproxy import association_proxy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import TIMESTAMP, Float, Integer, String
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):

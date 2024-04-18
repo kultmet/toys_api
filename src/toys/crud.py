@@ -1,11 +1,6 @@
-import datetime
 import math
-from typing import List, Optional
 
-from sqlalchemy import delete, desc, func, select, text, update
-from sqlalchemy.ext.asyncio import AsyncConnection, AsyncSession
-from sqlalchemy.orm import Session
-from sqlalchemy.orm.query import Query
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.toys import models
 from src.utils import SQLAlchemyRepository

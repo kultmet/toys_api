@@ -1,28 +1,10 @@
-import asyncio
-import json
-from datetime import date
-from typing import Annotated, List, Optional
+from typing import Annotated
 
-from fastapi import (
-    Depends,
-    HTTPException,
-    Path,
-    Query,
-    Request,
-    WebSocket,
-    WebSocketDisconnect,
-    routing,
-    staticfiles,
-    status,
-    templating,
-)
+from fastapi import Depends, Request, routing
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import Session
 
-from src.toys import utils
 from src.database import get_async_session
-from src.toys import crud, schemas
-
+from src.toys import crud, schemas, utils
 
 toy_router = routing.APIRouter(prefix="/toys", tags=["Toys"])
 
@@ -30,8 +12,8 @@ toy_router = routing.APIRouter(prefix="/toys", tags=["Toys"])
 @toy_router.get("/ex")
 def read_xlsx():
     toy_types = {}
-    import pandas
     import numpy as np
+    import pandas
 
     df = pandas.read_excel("files/detskiymir_msk_products.xlsx").replace(np.nan, None)
     toys_data = df.to_dict(orient="records")

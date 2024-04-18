@@ -2,7 +2,7 @@ import os
 
 import uvicorn
 
-from src.config import WEB_HOST, WEB_PORT
+from src.config import DB_HOST, WEB_HOST, WEB_PORT
 
 
 def uvicorn_run():
@@ -10,5 +10,6 @@ def uvicorn_run():
 
 
 if __name__ == "__main__":
+    print(DB_HOST)
     os.system("alembic upgrade head")
     uvicorn_run()

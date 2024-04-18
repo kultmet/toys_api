@@ -24,9 +24,12 @@ exclude =[
     'venv/',
     'env/',
 ]
-per-file-ignores = []
+per-file-ignores = ['*/settings.py:E501', './kafka/schema.py:E501', './kafka/sender.py:E501']
 max-complexity = 10
 max-line-length = 91
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326" # Отключить некоторые проверки для совместимости с SonarQube
 
 [tool.pylint.format]
 # Максимальное количество символов в одной строке.
@@ -45,7 +48,7 @@ asynio_mode = "auto"
 [tool.coverage.run]
 branch = true  # Включает анализ покрытия по веткам, а не по стокам кода.
 omit = [".venv/*", "tests/*"]  # Файлы, которые не должны быть в отчетности или изменяться.
-source = ["src"]
+source = ["src", "workers"]
 command_line = "-m pytest"
 
 [tool.coverage.report]
@@ -58,3 +61,7 @@ output = "coverage.xml"
 [tool.mypy]
 ignore_missing_imports = true
 packages = ["src"]
+
+[tool.bandit]
+exclude_dirs = ["tests", "venv"]
+skips = ["B104", "B101", "B607", "B605"]

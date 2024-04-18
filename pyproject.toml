@@ -1,0 +1,60 @@
+[tool.black]
+multi-line-output = 3  # Многострочный вывод (3 - вертикально висячий) для совместимости с isort.
+include_trailing_comma = true  # Включает конечную запятую перед скобками в многострочных импортах.
+force_grid_wrap = 0  # Принудительное оборачивание импортов в таблицу.
+use_parentheses = true  # Использует скобки вместо слеша для продолжения линии, превысившей лимит.
+ensure_newline_before_comments = true  # вставляет пустую строку перед комментарием после импорта.
+line_length = 91  # Максимальная длина линии импорта.
+exclude =  '''^.*\b(migrations)\b.*$'''
+
+[tool.isort]
+multi_line_output = 3  # Многострочный вывод (3 - вертикально висячий).
+include_trailing_comma = true  # Включает конечную запятую перед скобками в многострочных импортах.
+force_grid_wrap = 0  # Принудительное оборачивание импортов в таблицу.
+use_parentheses = true  # Использует скобки вместо слеша для продолжения линии, превысившей лимит.
+ensure_newline_before_comments = true  # вставляет пустую строку перед комментарием после импорта.
+line_length = 91  # Максимальная длина линии импорта.
+profile = "black"
+
+[tool.flake8]
+ignore = ['R504', 'W503', 'I001', 'I005']
+exclude =[
+    'tests/',
+    './migrations/*',
+    'venv/',
+    'env/',
+]
+per-file-ignores = []
+max-complexity = 10
+max-line-length = 91
+
+[tool.pylint.format]
+# Максимальное количество символов в одной строке.
+max-line-length = "91"
+
+[tool.pytest.ini_options]
+minversion = "7.4.4"   # Версия pytest, начиная с которой будет работать этот файл (лучше указывать версию, которая установлена у вас).
+addopts = "-s -v --durations=0"
+cache_dir = ".cache/pytest_cache"
+testpaths = ["tests"]  # Путь до папки с тестами (в данном примере папка лежит в корне).
+pythonpath = [".", "src"]
+filterwarnings = ['ignore::DeprecationWarning','ignore:warnings']
+asynio_mode = "auto"
+
+
+[tool.coverage.run]
+branch = true  # Включает анализ покрытия по веткам, а не по стокам кода.
+omit = [".venv/*", "tests/*"]  # Файлы, которые не должны быть в отчетности или изменяться.
+source = ["src"]
+command_line = "-m pytest"
+
+[tool.coverage.report]
+omit = [".venv/*", "tests/*"]  # Файлы, которые не должны быть в отчетности.
+show_missing = true
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.mypy]
+ignore_missing_imports = true
+packages = ["src"]

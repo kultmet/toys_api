@@ -13,4 +13,4 @@ RUN pip install -r /backend/requirements.txt
 
 COPY . /backend/
 
-ENTRYPOINT ["python", "main.py"]
+# ENTRYPOINT ["python", "main.py"]
